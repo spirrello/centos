@@ -17,11 +17,13 @@ keyboard --vckeymap=us --xlayouts='us'
 # System language
 lang en_US.UTF-8
 
+network  --hostname={{vm_name}}.{{domain}}
+
 # SELinux configuration
 selinux disabled
 
 # Root password
-rootpw --iscrypted {{root_pw}}
+rootpw --iscrypted {{user_password}}
 # System timezone
 timezone America/New_York --isUtc
 user --groups=wheel --name={{username}}l --password={{user_password}} --iscrypted --gecos="{{username}}"
