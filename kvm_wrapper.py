@@ -34,7 +34,7 @@ def build_kickstart(args,password_var):
 
        
 def build_vm(kickstart_file, args):
-    os.system("virt-install --connect qemu:///system -n " + args.vm + "-r 1024 --vcpus=1 \
+    os.system("virt-install --connect qemu:///system -n " + args.vm + " -r 1024 --vcpus=1 \
       --disk path=/var/lib/libvirt/images/"+ args.vm +".img,size=10 --graphics \
       vnc,listen=0.0.0.0 --noautoconsole --os-type linux --os-variant rhel7 \
       --accelerate --network=bridge:virbr0 --initrd-inject=" + args.vm + ".cfg \
