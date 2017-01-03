@@ -1,0 +1,50 @@
+---
+
+- name: yum update
+  yum: name=* state=latest
+  
+- name: disable iptables
+  service: name=iptables state=stopped enabled=no
+  when: ansible_distribution == 'CentOS'
+  ignore_errors: true
+
+- name: disable ip6tables
+  service: name=ip6tables state=stopped enabled=no
+  when: ansible_distribution == 'CentOS'
+  ignore_errors: true
+
+- name: disable firewalld
+  service: name=firewalld state=stopped enabled=no
+  when: ansible_distribution == 'CentOS'
+  ignore_errors: true
+
+- name: install prereq packages (epel-release,tar,xz,zip,unzip,curl,ipset)
+  yum: name=epel-release,tar,xz,zip,unzip,curl,ipset,bzip2 state=present
+  ignore_errors: true
+
+- name: install utility packages (traceroute, wget, mlocate, net-tools,bind-utils)
+  yum: name=traceroute,wget,mlocate,tcpdump,net-tools,bind-utils state=present
+  ignore_errors: true
+
+- name: update SElinux
+  shell: sudo sed -i s/SELINUX=enforcing/SELINUX=permissive/g /etc/selinux/config
+  when: ansible_distribution == 'CentOS'
+
+- name: setenforce 0
+  shell: setenforce 0
+  when: ansible_distribution == 'CentOS'
+
+- name: enable passwordless sudo access
+  shell: echo '%wheel        ALL=(ALL)       NOPASSWD: ALL' > /etc/sudoers
+  when: ansible_distribution == 'CentOS'
+
+
+# - name: Install docker from Internet
+#   shell: curl -fsSL https://get.docker.com/ | sh
+  #yum: name=docker state=present
+
+# - name: Reload systemctl after updating Docker service.
+#   command: systemctl daemon-reload
+
+# - name: start and enable docker service.
+#   service: name=docker state=started enabled=yes

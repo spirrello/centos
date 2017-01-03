@@ -1,0 +1,43 @@
+#version=DEVEL
+# Firewall configuration
+firewall --disabled
+# Install OS instead of upgrade
+install
+# Use NFS installation media
+url --url="ftp://{{ftp_server}}/pub/"
+# System authorization information
+auth --enableshadow --passalgo=sha512
+# Use graphical install
+graphical
+# Run the Setup Agent on first boot
+firstboot --disable
+ignoredisk --only-use=vda
+# Keyboard layouts
+keyboard --vckeymap=us --xlayouts='us'
+# System language
+lang en_US.UTF-8
+
+# SELinux configuration
+selinux disabled
+
+# Root password
+rootpw --iscrypted {{root_pw}}
+# System timezone
+timezone America/New_York --isUtc
+user --groups=wheel --name={{username}}l --password={{user_password}} --iscrypted --gecos="{{username}}"
+# System bootloader configuration
+bootloader --append=" crashkernel=auto" --location=mbr --boot-drive=vda
+autopart --type=lvm
+# Partition clearing information
+clearpart --none --initlabel
+
+%packages
+@^minimal
+@core
+kexec-tools
+
+%end
+
+%addon com_redhat_kdump --enable --reserve-mb='auto'
+
+%end
