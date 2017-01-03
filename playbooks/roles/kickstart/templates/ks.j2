@@ -17,7 +17,11 @@ keyboard --vckeymap=us --xlayouts='us'
 # System language
 lang en_US.UTF-8
 
+{% if static_ip %}
+network --device eth0 --bootproto=static --ip={{static_ip}} --netmask={{mask}} --gateway={{gateway}} --nameserver={{dns}} --hostname={{vm_name}}.{{domain}}
+{% else %}
 network  --hostname={{vm_name}}.{{domain}}
+{% endif %}
 
 # SELinux configuration
 selinux disabled
@@ -26,7 +30,7 @@ selinux disabled
 rootpw --iscrypted {{user_password}}
 # System timezone
 timezone America/New_York --isUtc
-user --groups=wheel --name={{username}}l --password={{user_password}} --iscrypted --gecos="{{username}}"
+user --groups=wheel --name={{username}} --password={{user_password}} --iscrypted --gecos="{{username}}"
 # System bootloader configuration
 bootloader --append=" crashkernel=auto" --location=mbr --boot-drive=vda
 autopart --type=lvm

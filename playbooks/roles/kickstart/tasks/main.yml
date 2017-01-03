@@ -1,6 +1,4 @@
 ---
 
-
-#Need the following for when installing on Centos 7 in the office.
 - name: Generate Kickstart file
   template: src=roles/Kickstart/templates/ks.j2 dest=playbooks/{{vm_name}}.cfg
