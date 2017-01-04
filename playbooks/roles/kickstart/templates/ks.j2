@@ -23,6 +23,8 @@ network --device eth0 --bootproto=static --ip={{static_ip}} --netmask={{mask}} -
 network  --hostname={{vm_name}}.{{domain}}
 {% endif %}
 
+reboot
+
 # SELinux configuration
 selinux disabled
 
