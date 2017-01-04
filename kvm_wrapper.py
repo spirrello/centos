@@ -10,6 +10,7 @@ import time
 import getpass
 import argparse
 import crypt
+import libvirt
 
 
 def install_prereqs(environment):
@@ -39,6 +40,23 @@ def build_vm(kickstart_file, args):
       vnc,listen=0.0.0.0 --noautoconsole --os-type linux --os-variant rhel7 \
       --accelerate --autostart --network=bridge:virbr0 --initrd-inject=" + args.vm + ".cfg \
       --extra-args="'ks=file:'"" + args.vm + ".cfg --hvm --location /var/lib/libvirt/boot/CentOS-7-x86_64-Minimal-1511.iso")
+
+    #After the VM build process begins we need to test and see where the process is....once it powers off we want to power it on.
+    
+    time.sleep(30) #Pause for 30 seconds before checking the status of the machine.
+    #Build libvirt connection object.
+    kvm_conn = libvirt.open('qemu:///system')
+    vm_on = True
+    while dom.isActive():
+        print(args.vm + " is still initializing....")
+        time.sleep(30)
+
+    
+    kvm_vm = kvm_conn.lookupByName(args.vm)
+    kvm_vm.create()
+    print(args.vm + " is now completed.  Powering on now...")
+
+
 
 
 def get_password():
