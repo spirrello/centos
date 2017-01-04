@@ -35,7 +35,7 @@
   when: ansible_distribution == 'CentOS'
 
 - name: enable passwordless sudo access
-  shell: echo '%wheel        ALL=(ALL)       NOPASSWD: ALL' > /etc/sudoers
+  shell: echo '%wheel        ALL=(ALL)       NOPASSWD\: ALL' > /etc/sudoers
   when: ansible_distribution == 'CentOS'
 
 
