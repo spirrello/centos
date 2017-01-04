@@ -43,7 +43,19 @@ def build_vm(kickstart_file, args):
 
 def get_password():
     """Encrypt the user password"""
-    password_var = crypt.crypt(getpass.getpass(prompt="Please enter user password:"),"232e*&7$asdfasdfasdf")
+    loop = True 
+    while loop:
+        password_var1 = crypt.crypt(getpass.getpass(prompt="Please enter user password:"),"232e*&7$asdfasdfasdf")
+        password_var2 = crypt.crypt(getpass.getpass(prompt="Please confirm your password:"),"232e*&7$asdfasdfasdf")
+        if password_var1 != password_var2:
+            loop = True
+            print("Passwords do no match, lets try again....")
+        else:
+            loop = False  
+
+
+    
+
     return password_var
 
 
