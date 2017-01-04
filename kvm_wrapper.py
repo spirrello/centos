@@ -42,12 +42,13 @@ def build_vm(kickstart_file, args):
       --extra-args="'ks=file:'"" + args.vm + ".cfg --hvm --location /var/lib/libvirt/boot/CentOS-7-x86_64-Minimal-1511.iso")
 
     #After the VM build process begins we need to test and see where the process is....once it powers off we want to power it on.
-    
+    print("Please wait while KVM builds " + args.vm + ".")
     time.sleep(30) #Pause for 30 seconds before checking the status of the machine.
     #Build libvirt connection object.
     kvm_conn = libvirt.open('qemu:///system')
     vm_on = True
-    while dom.isActive():
+    kvm_vm = conn.lookupByName(args.vm)
+    while kvm_vm.isActive():
         print(args.vm + " is still initializing....")
         time.sleep(30)
 
