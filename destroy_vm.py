@@ -12,17 +12,17 @@ import argparse
 import crypt
 
 
-destroy_parser = argparse.ArgumentParser(
+parser = argparse.ArgumentParser(
        description='Process args for destorying KVM guests.')
    
 
-destroy_parser.add_argument('-de', '--destroy', required=False, action='store',
+parser.add_argument('-v', '--vm', required=False, action='store',
                    help='Destroy VMs.  Include the name of VM to destory.')
-destroy_args = destroy_parser.parse_args()
+destroy_args = parser.parse_args()
 if destroy_args:
-    os.system("virsh start " + destroy_args)
-    os.system("virsh destroy " + destroy_args)
-    os.system("virsh undefine " + destroy_args)
+    os.system("virsh start " + destroy_args.vm)
+    os.system("virsh destroy " + destroy_args.vm)
+    os.system("virsh undefine " + destroy_args.vm)
     print("Deleting the VM image....")
-    os.system("rm -f /var/lib/libvirt/images/" + destroy_args + ".img")
+    os.system("rm -f /var/lib/libvirt/images/" + destroy_args.vm + ".img")
     sys.exit()
