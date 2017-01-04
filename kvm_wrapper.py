@@ -70,7 +70,9 @@ def main():
         os.system("virsh start " + args.destroy)
         os.system("virsh destroy " + args.destroy)
         os.system("virsh undefine " + args.destroy)
+        print("Deleting the VM image....")
         os.system("rm -f /var/lib/libvirt/images/" + args.destroy + ".img")
+        break
 
    parser.add_argument('-v', '--vm', required=True, action='store',
                        help='VM name')
