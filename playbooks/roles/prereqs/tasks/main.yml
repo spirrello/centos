@@ -1,5 +1,9 @@
 ---
 
+
+- name: add epel key
+  shell: rpm --import https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
+
 - name: add epel
   yum_repository:
     name: epel
