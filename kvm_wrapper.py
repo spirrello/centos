@@ -62,8 +62,19 @@ def get_password():
 def main():
    parser = argparse.ArgumentParser(
        description='Process args for building KVM guests.')
+
+   parser.add_argument('-de', '--destroy', required=False, action='store',
+                       help='Destroy VMs')
    parser.add_argument('-v', '--vm', required=True, action='store',
                        help='VM name')
+   args = parser.parse_args()
+   if args.destroy:
+        os.system("virsh start " + args.vm)
+        os.system("virsh destroy " + args.vm)
+        os.system("virsh undefine " + args.vm)
+        os.system("rm -f /var/lib/libvirt/images/" + args.vm + ".img")
+
+
    parser.add_argument('-d', '--domain', required=True, action='store',
                        help='VM domain')
    parser.add_argument('-s', '--static_ip', required=False, action='store',
