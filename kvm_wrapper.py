@@ -65,13 +65,13 @@ def main():
 
    parser.add_argument('-de', '--destroy', required=False, action='store',
                        help='Destroy VMs.  Include the name of VM to destory.')
-   args = parser.parse_args()
-   if args.destroy:
-        os.system("virsh start " + args.destroy)
-        os.system("virsh destroy " + args.destroy)
-        os.system("virsh undefine " + args.destroy)
+   destroy_args = parser.parse_args()
+   if destroy_destroy_args:
+        os.system("virsh start " + destroy_args)
+        os.system("virsh destroy " + destroy_args)
+        os.system("virsh undefine " + destroy_args)
         print("Deleting the VM image....")
-        os.system("rm -f /var/lib/libvirt/images/" + args.destroy + ".img")
+        os.system("rm -f /var/lib/libvirt/images/" + destroy_args + ".img")
         sys.exit()
 
    parser.add_argument('-v', '--vm', required=True, action='store',
