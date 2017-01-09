@@ -1,0 +1,6 @@
+---
+
+- hosts: cluster
+  gather_facts: yes
+  roles:
+    - ssh_keys

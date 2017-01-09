@@ -4,7 +4,6 @@
 
 
 [cluster]
-#ldap01 ansible_host=192.168.122.100
 vm7-1 ansible_host=192.168.122.101
 vm7-2 ansible_host=192.168.122.102
 vm7-3 ansible_host=192.168.122.103
