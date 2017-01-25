@@ -7,7 +7,6 @@ This script serves as a wrapper for installing KVM guests.
 import sys
 import os
 import time
-import getpass
 import argparse
 import crypt
 

@@ -22,6 +22,8 @@ virsh attach-interface --domain vm7-5 --type bridge --source virbr1 --model virt
 virsh attach-interface --domain vm7-5 --type bridge --source virbr2 --model virtio --config --live
 
 
+
+
 Action items
 - Seed ssh keys
 - Add reboot sequence
