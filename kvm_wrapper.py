@@ -104,10 +104,12 @@ def main():
                        help='Environment...home,office,etc.')
    
    args = parser.parse_args()
+   
    if args.password == "":
        args.password = get_password()
+   else:
+       args.password = crypt.crypt(args.password,"232e*&7$asdfasdfasdf") 
    
-
    #Build the kickstart file.
    build_kickstart(args,args.password)
 
