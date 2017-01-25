@@ -107,13 +107,14 @@ def main():
    if args.password == "":
        args.password = get_password()
    
+   print (args.password)
 
-   #Build the kickstart file.
-   build_kickstart(args,args.password)
+   # #Build the kickstart file.
+   # build_kickstart(args,args.password)
 
-   #Build VM
-   kickstart_file = args.vm + ".cfg"
-   build_vm(kickstart_file, args)
+   # #Build VM
+   # kickstart_file = args.vm + ".cfg"
+   # build_vm(kickstart_file, args)
 
 
 # Start program
