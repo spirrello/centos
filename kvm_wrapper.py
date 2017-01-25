@@ -26,7 +26,7 @@ def build_kickstart(args,password_var):
     else:
         try:
             os.system("ansible-playbook playbooks/generate_kickstart.yml --extra-vars \"username=" + args.username + \
-                " user_password=" + password_var + " vm_name=" + args.vm + " domain=" + \
+                " user_password=" + args.passwor + " vm_name=" + args.vm + " domain=" + \
                 args.domain + " static_ip=" + args.static_ip + " mask=" + args.mask + " gateway=" + \
                 args.gateway + " dns=" + args.dns + "\" --inventory-file=playbooks/environments/" + args.env + "/inventory")
         except Exception as e:
@@ -107,14 +107,13 @@ def main():
    if args.password == "":
        args.password = get_password()
    
-   print (args.password)
+   
+   #Build the kickstart file.
+   build_kickstart(args,args.password)
 
-   # #Build the kickstart file.
-   # build_kickstart(args,args.password)
-
-   # #Build VM
-   # kickstart_file = args.vm + ".cfg"
-   # build_vm(kickstart_file, args)
+   #Build VM
+   kickstart_file = args.vm + ".cfg"
+   build_vm(kickstart_file, args)
 
 
 # Start program
