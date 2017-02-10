@@ -1,4 +1,4 @@
 ---
 
 - name: Generate Kickstart file
-  template: src=roles/kickstart/templates/ks.j2 dest=../{{vm_name}}.cfg
+  template: src=roles/kickstart/templates/ks.j2 dest={{vm_name}}.cfg
