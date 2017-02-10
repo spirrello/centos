@@ -1,6 +1,6 @@
 ######## Global Variables #######
 
-ftp_server: 192.168.122.1
+ftp_server: 10.10.102.25
 
 
 user_account: spirrell
