@@ -4,14 +4,14 @@
 
 
 [cluster]
-vm7-1 ansible_host=192.168.122.101
-vm7-2 ansible_host=192.168.122.102
-vm7-3 ansible_host=192.168.122.103
-vm7-4 ansible_host=192.168.122.104
-vm7-5 ansible_host=192.168.122.105
-vm7-6 ansible_host=192.168.122.106
-#vm7-7 ansible_host=192.168.122.107
-#vm7-8 ansible_host=192.168.122.108
-#vm7-9 ansible_host=192.168.122.109
-#vm7-10 ansible_host=192.168.122.110
+#vm7-1
+#vm7-2
+#vm7-3
+vm7-4
+vm7-5 
+vm7-6
+#vm7-7
+#vm7-8
+#vm7-9
+#vm7-10
 

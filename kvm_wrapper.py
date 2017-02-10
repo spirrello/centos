@@ -38,7 +38,7 @@ def build_vm(kickstart_file, args):
     os.system("virt-install --connect qemu:///system -n " + args.vm + " -r 1024 --vcpus=1 \
       --disk path=/var/lib/libvirt/images/"+ args.vm +".img,size=10 --graphics \
       vnc,listen=0.0.0.0 --noautoconsole --os-type linux --os-variant rhel7 \
-      --accelerate --autostart --network=bridge:virbr0 --initrd-inject=" + args.vm + ".cfg \
+      --accelerate --autostart --network=bridge:" + args.vlan + " --initrd-inject=" + args.vm + ".cfg \
       --extra-args="'ks=file:'"" + args.vm + ".cfg --hvm --location /var/lib/libvirt/boot/CentOS-7-x86_64-Minimal-1511.iso")
 
     #After the VM build process begins we need to test and see where the process is....once it powers off we want to power it on.
@@ -88,6 +88,8 @@ def main():
                        help='VM name')
    parser.add_argument('-d', '--domain', required=True, action='store',
                        help='VM domain')
+   parser.add_argument('-v', '--vlan', required=True, action='store',
+                       help='Linux bridge')
    parser.add_argument('-s', '--static_ip', required=False, action='store',
                        help='static IP')
    parser.add_argument('-m', '--mask', required=False, action='store',
