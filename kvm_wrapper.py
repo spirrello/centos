@@ -107,7 +107,7 @@ def main():
    
    args = parser.parse_args()
    
-   if args.password == "":
+   if args.password == None:
        args.password = get_password()
    else:
        args.password = crypt.crypt(args.password,"232e*&7$asdfasdfasdf") 
