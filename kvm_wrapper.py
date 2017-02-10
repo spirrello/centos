@@ -88,7 +88,7 @@ def main():
                        help='VM name')
    parser.add_argument('-d', '--domain', required=True, action='store',
                        help='VM domain')
-   parser.add_argument('-v', '--vlan', required=True, action='store',
+   parser.add_argument('-vl', '--vlan', required=True, action='store',
                        help='Linux bridge')
    parser.add_argument('-s', '--static_ip', required=False, action='store',
                        help='static IP')
