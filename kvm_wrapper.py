@@ -39,7 +39,7 @@ def build_vm(kickstart_file, args):
       --disk path=/var/lib/libvirt/images/"+ args.vm +".img,size=10 --graphics \
       vnc,listen=0.0.0.0 --noautoconsole --os-type linux --os-variant rhel7 \
       --accelerate --autostart --network=bridge:" + args.vlan + " --initrd-inject=" + args.vm + ".cfg \
-      --extra-args="'ks=file:'"" + args.vm + ".cfg --hvm --location /var/lib/libvirt/boot/CentOS-7-x86_64-Minimal-1511.iso")
+      --extra-args="'ks=file:playbook/roles/kickstart/templates/'"" + args.vm + ".cfg --hvm --location /var/lib/libvirt/boot/CentOS-7-x86_64-Minimal-1511.iso")
 
     #After the VM build process begins we need to test and see where the process is....once it powers off we want to power it on.
     print("\nPlease wait while KVM builds " + args.vm + ".")
