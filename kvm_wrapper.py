@@ -107,20 +107,19 @@ def main():
    
    args = parser.parse_args()
    
-   for i in args:
-       print(i)
 
-   # if args.password == None:
-   #     args.password = get_password()
-   # else:
-   #     args.password = crypt.crypt(args.password,"232e*&7$asdfasdfasdf") 
+
+   if args.password == None:
+       args.password = get_password()
+   else:
+       args.password = crypt.crypt(args.password,"232e*&7$asdfasdfasdf") 
    
-   # #Build the kickstart file.
-   # build_kickstart(args,args.password)
+   #Build the kickstart file.
+   build_kickstart(args,args.password)
 
-   # #Build VM
-   # kickstart_file = args.vm + ".cfg"
-   # build_vm(kickstart_file, args)
+   #Build VM
+   kickstart_file = args.vm + ".cfg"
+   build_vm(kickstart_file, args)
 
 
 # Start program
