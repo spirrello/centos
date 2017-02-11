@@ -35,11 +35,11 @@ def build_kickstart(args,password_var):
 
        
 def build_vm(kickstart_file, args):
-    print("VLAN:{}".format(args.vlan))
+    
     os.system("virt-install --connect qemu:///system -n " + args.vm + " -r 1024 --vcpus=1 \
       --disk path=/var/lib/libvirt/images/"+ args.vm +".img,size=10 --graphics \
       vnc,listen=0.0.0.0 --noautoconsole --os-type linux --os-variant rhel7 \
-      --accelerate --autostart --network=bridge:" + args.vlan + " --initrd-inject=" + args.vm + ".cfg \
+      --accelerate --network=bridge:" + args.vlan + " --initrd-inject=" + args.vm + ".cfg \
       --extra-args="'ks='"" + args.vm + ".cfg --hvm --location /var/lib/libvirt/boot/CentOS-7-x86_64-Minimal-1511.iso")
 
     #After the VM build process begins we need to test and see where the process is....once it powers off we want to power it on.
