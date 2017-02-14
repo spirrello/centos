@@ -44,8 +44,7 @@ def build_vm(kickstart_file, args):
     # --network=bridge:br301 --network=bridge:br900 --initrd-inject=vm7-6.cfg 
     # --extra-args="ks=file:vm7-6.cfg" --hvm --location /var/lib/libvirt/boot/CentOS-7-x86_64-Minimal-1511.iso
     
-    print("virt-install --connect qemu:///system -n " + args.vm + " -r 1024 --vcpus=1 \
-      --disk path=/var/lib/libvirt/images/"+ args.vm +".img,size=10 --graphics \
+    print("virt-install --connect qemu:///system -n " + args.vm + " -r 1024 --vcpus=1 --disk path=/var/lib/libvirt/images/"+ args.vm +".img,size=10 --graphics \
       vnc,listen=0.0.0.0 --noautoconsole --os-type linux --os-variant rhel7 \
       --accelerate --network=bridge:" + args.vlan + " --initrd-inject=" + args.vm + ".cfg \
       --extra-args="'ks='"" + args.vm + ".cfg --hvm --location /var/lib/libvirt/boot/CentOS-7-x86_64-Minimal-1511.iso")
