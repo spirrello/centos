@@ -25,6 +25,7 @@ def build_kickstart(args,password_var):
         os.system("ansible-playbook playbooks/generate_kickstart.yml --extra-vars \"username=" + args.username + " user_password=" + args.password + " vm_name=" + args.vm + " domain=" + args.domain + "\" --inventory-file=playbooks/environments/" + args.env + "/inventory")
     else:
         try:
+            print("In the try statement")
             os.system("ansible-playbook playbooks/generate_kickstart.yml --extra-vars \"username=" + args.username + \
                 " user_password=" + args.password + " vm_name=" + args.vm + " domain=" + \
                 args.domain + " static_ip=" + args.static_ip + " mask=" + args.mask + " gateway=" + \
@@ -128,6 +129,7 @@ def main():
    #Build VM
    kickstart_file = args.vm + ".cfg"
    #This is broken with Ubuntu as KVM host so commenting out for now.
+   print("I'm here")
    build_vm(kickstart_file, args)
 
 
