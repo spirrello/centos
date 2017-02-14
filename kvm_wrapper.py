@@ -36,7 +36,12 @@ def build_kickstart(args,password_var):
        
 def build_vm(kickstart_file, args):
     
-    print(args.vm,args.vlan)
+    #The following works but the os.system call is failing.  Need to stare and compare for RCA.
+    #virt-install --connect qemu:///system -n vm7-6 -r 1024 --vcpus=1 
+    #--disk path=/var/lib/libvirt/images/vm7-6.img,size=10 --graphics vnc,listen=0.0.0.0 
+    # --noautoconsole --os-type linux --os-variant rhel7 --accelerate 
+    # --network=bridge:br301 --network=bridge:br900 --initrd-inject=vm7-6.cfg 
+    # --extra-args="ks=file:vm7-6.cfg" --hvm --location /var/lib/libvirt/boot/CentOS-7-x86_64-Minimal-1511.iso
     os.system("virt-install --connect qemu:///system -n " + args.vm + " -r 1024 --vcpus=1 \
       --disk path=/var/lib/libvirt/images/"+ args.vm +".img,size=10 --graphics \
       vnc,listen=0.0.0.0 --noautoconsole --os-type linux --os-variant rhel7 \

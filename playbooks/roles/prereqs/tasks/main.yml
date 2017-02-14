@@ -10,6 +10,33 @@
     description: EPEL YUM repo
     baseurl: https://download.fedoraproject.org/pub/epel/$releasever/$basearch/
 
+#Commenting this out until error has been rectified. Error message:
+#"This module requires NetworkManager glib API"
+# - name: autoconnect eth1
+#   nmcli:
+#       conn_name: eth1
+#       ifname: eth1
+#       type: ethernet
+#       state: present
+#       autoconnect: yes
+#       #ignore_errors: true
+
+#   tags:
+#      - nic
+
+- name: TEMP WORKAROUND / update eth1 to ONBOOT=yes
+  shell: sudo sed -i s/ONBOOT=no/ONBOOT=yes/g /etc/sysconfig/network-scripts/ifcfg-eth1
+  when: ansible_distribution == 'CentOS'
+  tags:
+     - nic
+
+- name: restart network service to initialize eth1
+  service: name=network state=restarted
+  when: ansible_distribution == 'CentOS'
+  ignore_errors: true
+  tags:
+     - network
+
 - name: yum update
   yum: name=* state=latest
   
