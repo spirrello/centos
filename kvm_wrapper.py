@@ -128,7 +128,7 @@ def main():
    #Build VM
    kickstart_file = args.vm + ".cfg"
    #This is broken with Ubuntu as KVM host so commenting out for now.
-   #build_vm(kickstart_file, args)
+   build_vm(kickstart_file, args)
 
 
 # Start program
