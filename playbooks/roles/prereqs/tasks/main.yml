@@ -49,6 +49,21 @@
   lineinfile: "dest=/etc/sudoers state=present regexp='^%wheel' line='%wheel ALL=(ALL) NOPASSWD: ALL'"
   when: ansible_distribution == 'CentOS'
 
+- name: Install Ansible on Control node
+  yum: name=ansible state=latest
+  
+- name: Install bzip2 on Control node
+  yum: name=bzip2 state=latest  
+
+- name: Install python-netaddr on Control node
+  yum: name=python-netaddr state=latest
+
+- name: Install Git on Control node
+  yum: name=git state=latest 
+
+- name: Install PIP on Control node
+  yum: name=python-pip state=latest
+
 
 # - name: Install docker from Internet
 #   shell: curl -fsSL https://get.docker.com/ | sh

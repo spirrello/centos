@@ -1,0 +1,32 @@
+---
+
+# vars_files:
+#       - vars/guests.yml
+
+- name: test vars_files
+  shell: touch testfile
+
+- name: create vm
+  command: virt-install -n {{item.name}}
+           -r {{ item.mem }}
+           --vcpus {{ item.cpu }}
+           --disk size={{item.disk.size}},path={{item.disk.path}}/{{item.name}}.img
+           --graphics vnc
+           --noautoconsole
+           --os-type {{ item.os.type }}
+           --os-variant {{ item.os.variant }}
+           --network network={{ item.network1 }}
+           --network network={{ item.network2 }}
+           --initrd-inject=vm7-4.cfg --extra-args="ks=file:vm7-3.cfg"
+           --{{item.virt_hypervisor}}
+           --location {{item.iso_path}}
+  with_items: guests
+
+- name: get guest info
+  virt: command=info
+  register: virt_info
+
+- name: make sure all vms are running
+  virt: name={{item.name}} command=start
+  when: virt_info[item.name]['state'] != 'running'
+  with_items: guests

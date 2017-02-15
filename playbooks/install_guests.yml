@@ -1,0 +1,5 @@
+---
+- hosts: kvm
+  become: yes
+  roles:
+    - vms

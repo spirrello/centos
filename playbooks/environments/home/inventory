@@ -2,14 +2,17 @@
 #    Centos Startup Inventory   #
 #################################
 
+[kvm]
+vmhost
+
 
 [cluster]
-#vm7-1
-#vm7-2
-#vm7-3
-vm7-4
-vm7-5 
-vm7-6
+vm7-1
+vm7-2
+vm7-3
+#vm7-4
+#vm7-5 
+#vm7-6
 #vm7-7
 #vm7-8
 #vm7-9

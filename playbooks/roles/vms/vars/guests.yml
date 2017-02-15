@@ -1,0 +1,16 @@
+---
+guests:
+    - name: vm7-5
+      cpu: 1
+      mem: 1024
+      virt_type: kvm
+      virt_hypervisor: hvm
+      network1: br301
+      network2: br900
+      os:
+          type: linux
+          variant: rhel7
+      disk:
+          size: 10
+          path: /var/lib/libvirt/images/
+      iso_path: /var/lib/libvirt/boot/CentOS-7-x86_64-Minimal-1511.iso
