@@ -17,7 +17,7 @@
            --os-variant {{ item.os.variant }}
            --network network={{ item.network1 }}
            --network network={{ item.network2 }}
-           --initrd-inject=vm7-4.cfg --extra-args="ks=file:vm7-3.cfg"
+           --initrd-inject={{item.name}}.cfg --extra-args="ks=file:{{item.name}}.cfg"
            --{{item.virt_hypervisor}}
            --location {{item.iso_path}}
   with_items: guests

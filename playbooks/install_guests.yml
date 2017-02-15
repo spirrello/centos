@@ -1,5 +1,5 @@
 ---
-- hosts: kvm
+- hosts: localhost
   become: yes
   roles:
     - vms
