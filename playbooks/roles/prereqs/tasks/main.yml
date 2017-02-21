@@ -10,8 +10,8 @@
     description: EPEL YUM repo
     baseurl: https://download.fedoraproject.org/pub/epel/$releasever/$basearch/
 
-- name: yum update
-  yum: name=* state=latest
+# - name: yum update
+#   yum: name=* state=latest
   
 - name: disable iptables
   service: name=iptables state=stopped enabled=no
@@ -63,14 +63,3 @@
 
 - name: Install PIP 
   yum: name=python-pip state=latest
-
-
-# - name: Install docker from Internet
-#   shell: curl -fsSL https://get.docker.com/ | sh
-  #yum: name=docker state=present
-
-# - name: Reload systemctl after updating Docker service.
-#   command: systemctl daemon-reload
-
-# - name: start and enable docker service.
-#   service: name=docker state=started enabled=yes
