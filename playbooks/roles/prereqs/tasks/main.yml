@@ -36,6 +36,9 @@
   yum: name=traceroute,wget,mlocate,tcpdump,net-tools,bind-utils state=present
   ignore_errors: true
 
+- name: install prereq Contiv packages (ansible,bzip2,python-netaddr,git,python-pip)
+  yum: name=ansible,bzip2,python-netaddr,git,python-pip state=present
+
 - name: update SElinux
   shell: sudo sed -i s/SELINUX=enforcing/SELINUX=permissive/g /etc/selinux/config
   when: ansible_distribution == 'CentOS'
@@ -49,17 +52,4 @@
   lineinfile: "dest=/etc/sudoers state=present regexp='^%wheel' line='%wheel ALL=(ALL) NOPASSWD: ALL'"
   when: ansible_distribution == 'CentOS'
 
-- name: Install Ansible 
-  yum: name=ansible state=latest
-  
-- name: Install bzip2
-  yum: name=bzip2 state=latest  
 
-- name: Install python-netaddr 
-  yum: name=python-netaddr state=latest
-
-- name: Install Git 
-  yum: name=git state=latest 
-
-- name: Install PIP 
-  yum: name=python-pip state=latest
