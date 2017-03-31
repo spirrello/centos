@@ -2,19 +2,13 @@
 #    Centos Startup Inventory   #
 #################################
 
-[kvm]
-vmhost
-
-
 [cluster]
-vm7-1
-vm7-2
-vm7-3
-vm7-4
-vm7-5 
-#vm7-6
-#vm7-7
-#vm7-8
-#vm7-9
-#vm7-10
+#at4d-lvk8s01
+#at4d-lvk8s02
+#at4d-lvk8s03
+#at4d-lvk8s04
+#at4d-lvk8s05
+at4d-lvbind01
 
+[bind_dev]
+at4d-lvbind01

@@ -1,14 +1,25 @@
 ---
 
+- name: disable ipv6
+  shell: echo 'net.ipv6.conf.all.disable_ipv6 = 1'  >> /etc/sysctl.conf && echo 'net.ipv6.conf.default.disable_ipv6 = 1' >> /etc/sysctl.conf
+  tags:
+    - disable_ipv6
+
+- name: sysctl -p
+  shell: sysctl -p
+  tags:
+    - sysctl_reload
 
 - name: add epel key
   shell: rpm --import https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
+  when: internet
 
 - name: add epel
   yum_repository:
     name: epel
     description: EPEL YUM repo
     baseurl: https://download.fedoraproject.org/pub/epel/$releasever/$basearch/
+  when: internet
 
 # - name: yum update
 #   yum: name=* state=latest
@@ -31,6 +42,8 @@
 - name: install prereq packages (epel-release,tar,xz,zip,unzip,curl,ipset)
   yum: name=epel-release,tar,xz,zip,unzip,curl,ipset,bzip2 state=present
   ignore_errors: true
+  tags:
+    - prereq_packages
 
 - name: install utility packages (traceroute, wget, mlocate, net-tools,bind-utils)
   yum: name=traceroute,wget,mlocate,tcpdump,net-tools,bind-utils state=present
@@ -38,6 +51,8 @@
 
 - name: install prereq Contiv packages (ansible,bzip2,python-netaddr,git,python-pip)
   yum: name=ansible,bzip2,python-netaddr,git,python-pip state=present
+  tags:
+    - contiv_prereq
 
 - name: update SElinux
   shell: sudo sed -i s/SELINUX=enforcing/SELINUX=permissive/g /etc/selinux/config
