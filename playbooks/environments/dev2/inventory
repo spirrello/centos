@@ -3,12 +3,9 @@
 #################################
 
 [cluster]
-at4d-lvk8s01
-at4d-lvk8s02
-at4d-lvk8s03
-at4d-lvk8s04
-at4d-lvk8s05
-at4d-lvcnode01
+at4d-lvk8s11
+at4d-lvk8s12
+at4d-lvk8s13
+at4d-lvk8s14
+at4d-lvk8s15
 
-[bind_dev]
-at4d-lvbind01

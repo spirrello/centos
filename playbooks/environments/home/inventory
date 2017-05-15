@@ -1,20 +1,28 @@
 #################################
-#    Centos Startup Inventory   #
+#    Contiv Inventory           #
 #################################
 
-[kvm]
-vmhost
-
-
 [cluster]
-vm7-1
-vm7-2
-vm7-3
-vm7-4
-vm7-5 
-#vm7-6
-#vm7-7
-#vm7-8
-#vm7-9
-#vm7-10
+m01
+m02
+m03
+m04 
+m05 
 
+
+[masters]
+m01
+m02
+m03
+
+
+[workers]
+m04
+m05
+#m06
+
+[netplugin-master:children]
+masters
+
+[netplugin-worker:children]
+workers
